@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: rgb(255, 236, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+legend{
+    display: block;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    text-align:justify;
+    justify-content: left;
+    font-size: 30px;
+    padding: 5px;
+    background-color: deeppink;
+    color: white;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.grupo-input{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+.grupo-botones{
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+button{
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: deeppink;
+    color: white;
+    border: 2px solid black;
+    font-weight: bold;
+}
+button[type="submit"]{
+    background-color: deeppink;
+    color: rgb(177, 191, 253);
+}
+button[type="reset"]{
+    background-color: rgb(20, 63, 255);
+    color: rgb(253, 177, 218);
+}
+form{
+    background-color: blanchedalmond;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+input, select{
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+.genero{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.iniciar-sesion{
+    margin: 20px;
+    padding : 10px;
+    text-align: center;
+}
+.crear-cuenta{
+    margin: 20px;
+    padding : 10px;
+    text-align: center;
+}
+
+.contenedor-formulario{
+ background-color: antiquewhite;
+ padding: 30px;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgb(31, 41, 51);
+width: 100%;
+max-width: 500px;
+}
+
+input:focus,select:focus{
+    border-color: aqua;
+    box-shadow: 0 0 0 3px rgb(31, 41, 51);
+}
