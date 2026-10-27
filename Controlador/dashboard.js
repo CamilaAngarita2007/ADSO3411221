@@ -19,9 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cerrarSesionBtn = document.getElementById("cerrarSesion");
     cerrarSesionBtn.addEventListener("click", () => {
-        localStorage.removeItem("logueado");
-        localStorage.removeItem("rol");
-        localStorage.removeItem("nombre");
+        localStorage.clear();
         window.location.href = "login.html";
     });
 });
