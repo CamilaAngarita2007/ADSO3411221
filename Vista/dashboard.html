@@ -8,22 +8,69 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <title>CLUB ACERIAS - Panel principal</title>
     <style>
+        body {
+            background-color: #0064fa;
+        }
+
+        .modulo-card {
+            border-radius: 40px;
+            border: 2px solid transparent;
+            background-image:
+                linear-gradient(hsl(0, 0%, 100%), hsl(0, 0%, 100%)),
+                linear-gradient(-45deg, #ff00c8, #00a2ff, #fbff00);
+            background-origin: padding-box, border-box;
+            background-clip: padding-box, border-box;
+            background-size: 100% 100%, 400% 400%;
+            animation: unificadaAnimation 3s ease infinite;
+        }
+
+        .text-primary {
+            color: #9e057d !important;
+        }
+
+        .header-mr {
+            background-color: #770065;
+            color: #ffffff;
+            padding: 20px 30px;
+        }
+
         .icono-principal {
             font-size: 45px;
-            color: #0d6efd;
+            display: inline-block;
+            background: linear-gradient(-45deg, #ff00c8, #00a2ff, #fbff00);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: unificadaAnimation 3s ease infinite;
+        }
+
+        @keyframes unificadaAnimation {
+            0% {
+                background-position: 0% 50%, 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%, 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%, 0% 50%;
+            }
         }
     </style>
 </head>
 
 <body class="bg-light">
-    <div class="header-mr d-flex justify-content-between align-items-center p-3 bg-white shadow-sm">
+    <div class="header-mr d-flex justify-content-between align-items-center p-3 shadow-sm">
         <h3>CLUB ACERIAS - Panel principal</h3>
         <div class="text-end">
-            <small>Camila Angarita</small>
-            <button class="btn btn-danger btn-sm mt1"><i class="bi-box-arrow-right"></i> Cerrar sesión</button>
+            <small id="nombreUsuario">nombreUsuario</small>
+            <button id="cerrarSesion" class="btn btn-danger btn-sm mt1"><i class="bi-box-arrow-right"></i> Cerrar sesión</button>
         </div>
     </div>
-
+    
     <div class="container py-4">
         <h5 class="mb-4 fw-bold">Modulos del club de asociados</h5>
         <div id="tarjetasAdministrador" class="row g-4">
@@ -42,7 +89,7 @@
 
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
-                    <i class="bi bi-cash icono-principal"></i>
+                    <i class="bi bi-bank icono-principal"></i>
                     <h4 class="text-primary">Prestamos</h4>
                     <strong>Gestión de préstamos</strong>
                     <p class="text-muted">
@@ -58,12 +105,50 @@
                     <h4 class="text-primary">Actividades</h4>
                     <strong>Gestión de actividades</strong>
                     <p class="text-muted">
-                        Administra las actividades programadas para los asociados, incluyendo registro de asistencia y seguimiento.
+                        Administra las actividades programadas para los asociados, incluyendo registro de asistencia y
+                        seguimiento.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card modulo-card shadow-sm p-3">
+                    <i class="bi bi-envelope-plus icono-principal"></i>
+                    <h4 class="text-primary">Reportes</h4>
+                    <strong>Gestión de reportes</strong>
+                    <p class="text-muted">
+                        Administra los reportes generados para los asociados, incluyendo información financiera y de
+                        actividad.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="tarjetasAsociados" class="row g-4">
+            <div class="col-md-3">
+                <div class="card modulo-card shadow-sm p-3">
+                    <i class="bi bi-file-person icono-principal"></i>
+                    <h4 class="text-primary">Mi Perfil</h4>
+                    <strong>Gestión de mi perfil</strong>
+                    <p class="text-muted">
+                        Administra los datos de tu perfil como asociado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card modulo-card shadow-sm p-3">
+                    <i class="bi bi-cash-coin icono-principal"></i>
+                    <h4 class="text-primary">Mis Pagos</h4>
+                    <strong>Gestión de pagos</strong>
+                    <p class="text-muted">
+                        Administra los pagos de las cuotas programadas, incluyendo adelantar pagos
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script src="../Controlador/dashboard.js"></script>
 
 </html>
