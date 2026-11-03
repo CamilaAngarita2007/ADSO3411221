@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../Assets/css/registro.css">
+    <title>CLUB ACERIAS - Registro de préstamos</title>
+</head>
+
+<body>
+    <div class="header-mr d-flex flex-wrap gap-2 justify-content-between align-items-center p-3 shadow-sm">
+        <h3>CLUB ACERIAS</h3>
+        <a href="dashboard.html" class="btn btn-light btn-sm"><i class="bi bi-arrow-left"></i> Volver al panel</a>
+    </div>
+
+    <div class="container py-4">
+        <form id="formPrestamos" action="" method="post">
+            <fieldset>
+                <legend><i class="bi bi-bank"></i> Registro de préstamos - Acerias</legend>
+
+                <div class="campos row g-3 mx-0">
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="documentoAsociado">Ingresar el Documento del Asociado:</label>
+                            <input type="number" id="documentoAsociado" name="documentoAsociado" required placeholder="ejemplo: 1119150888">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="nombreAsociado">Ingresar el Nombre del Asociado:</label>
+                            <input type="text" id="nombreAsociado" name="nombreAsociado" required placeholder="ejemplo: Camila Angarita">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="tipoPrestamo">Ingresar el Tipo de Préstamo:</label>
+                            <select id="tipoPrestamo" name="tipoPrestamo" required>
+                                <option value="" selected disabled>Seleccionar...</option>
+                                <option value="libre inversion">Libre inversión</option>
+                                <option value="educacion">Educación</option>
+                                <option value="vivienda">Vivienda</option>
+                                <option value="calamidad">Calamidad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="valorPrestamo">Ingresar el Valor del Préstamo:</label>
+                            <input type="number" id="valorPrestamo" name="valorPrestamo" min="1" required placeholder="ejemplo: 2000000">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="tasaInteres">Ingresar la Tasa de Interés Mensual (%):</label>
+                            <input type="number" id="tasaInteres" name="tasaInteres" min="0" max="100" step="0.01" required placeholder="ejemplo: 1.5">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="plazoMeses">Ingresar el Plazo en Meses:</label>
+                            <input type="number" id="plazoMeses" name="plazoMeses" min="1" required placeholder="ejemplo: 12">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="fechaSolicitud">Ingresar la Fecha de Solicitud:</label>
+                            <input type="date" id="fechaSolicitud" name="fechaSolicitud" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="fechaPrimeraCuota">Ingresar la Fecha de la Primera Cuota:</label>
+                            <input type="date" id="fechaPrimeraCuota" name="fechaPrimeraCuota" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="documentoCodeudor">Ingresar el Documento del Codeudor:</label>
+                            <input type="number" id="documentoCodeudor" name="documentoCodeudor" placeholder="ejemplo: 1119150999">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="grupo-input">
+                            <label for="estadoPrestamo">Ingresar el Estado:</label>
+                            <select id="estadoPrestamo" name="estadoPrestamo" required>
+                                <option value="" selected disabled>Seleccionar...</option>
+                                <option value="solicitado">Solicitado</option>
+                                <option value="aprobado">Aprobado</option>
+                                <option value="desembolsado">Desembolsado</option>
+                                <option value="rechazado">Rechazado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="grupo-input">
+                            <label for="observaciones">Ingresar las Observaciones:</label>
+                            <textarea id="observaciones" name="observaciones" placeholder="ejemplo: Préstamo para el pago de matrícula"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo-botones">
+                    <button type="submit">Guardar</button>
+                    <button type="reset">Limpiar</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>
