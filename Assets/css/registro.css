@@ -1,0 +1,182 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(255, 236, 253);
+    min-height: 100vh;
+}
+
+.header-mr {
+    background-color: #770065;
+    color: #ffffff;
+    padding: 20px 30px;
+}
+
+.header-mr h3 {
+    margin: 0;
+}
+
+form {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 4px solid transparent;
+    border-radius: 40px;
+    background-image:
+        linear-gradient(blanchedalmond, blanchedalmond),
+        linear-gradient(-45deg, #ff00c8, #00a2ff, #fbff00);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 400% 400%;
+    animation: unificadaAnimation 3s ease infinite;
+}
+
+legend {
+    box-sizing: border-box;
+    width: calc(100% - 48px);
+    margin: 24px;
+    padding: 5px 15px;
+    font-size: 30px;
+    background-color: deeppink;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.campos {
+    padding: 0 16px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+    background-color: aquamarine;
+    border: 2px solid black;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.grupo-input > label,
+.titulo-opciones {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.grupo-input > input,
+.grupo-input > select,
+.grupo-input > textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: auto;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.grupo-input > textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.grupo-input > input:focus,
+.grupo-input > select:focus,
+.grupo-input > textarea:focus {
+    border-color: aqua;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(31, 41, 51);
+}
+
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.opciones label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.grupo-botones {
+    display: flex;
+    gap: 10px;
+    margin: 24px;
+}
+
+.grupo-botones button {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    background-color: deeppink;
+}
+
+button[type="reset"] {
+    background-color: rgb(20, 63, 255);
+}
+
+.iniciar-sesion {
+    margin: 24px;
+    text-align: center;
+}
+
+.iniciar-sesion p {
+    margin: 0;
+}
+
+@keyframes unificadaAnimation {
+    0% {
+        background-position: 0% 50%, 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%, 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%, 0% 50%;
+    }
+}
+
+@media (max-width: 575px) {
+    form {
+        border-radius: 25px;
+    }
+
+    legend {
+        width: calc(100% - 24px);
+        margin: 12px;
+        font-size: 22px;
+    }
+
+    .campos {
+        padding: 0 4px;
+    }
+
+    .grupo-botones {
+        margin: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    form {
+        animation: none;
+    }
+}
