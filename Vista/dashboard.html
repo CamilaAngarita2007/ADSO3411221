@@ -22,6 +22,12 @@
             background-clip: padding-box, border-box;
             background-size: 100% 100%, 400% 400%;
             animation: unificadaAnimation 3s ease infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .modulo-card:hover,
+        .modulo-card:focus-within {
+            transform: translateY(-5px);
         }
 
         .text-primary {
@@ -77,7 +83,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-people icono-principal"></i>
-                    <h4 class="text-primary">Asociados</h4>
+                    <h4><a href="registro.html" class="stretched-link text-primary text-decoration-none">Asociados</a></h4>
                     <strong>Gestión de asociados</strong>
                     <p class="text-muted">
                         Administra la información de los asociados, incluyendo datos personales, membresías y
@@ -90,7 +96,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-bank icono-principal"></i>
-                    <h4 class="text-primary">Prestamos</h4>
+                    <h4><a href="registroPrestamos.html" class="stretched-link text-primary text-decoration-none">Prestamos</a></h4>
                     <strong>Gestión de préstamos</strong>
                     <p class="text-muted">
                         Administra los préstamos otorgados a los asociados, incluyendo seguimiento de pagos y
@@ -102,7 +108,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-clipboard-check icono-principal"></i>
-                    <h4 class="text-primary">Actividades</h4>
+                    <h4><a href="registroActividades.html" class="stretched-link text-primary text-decoration-none">Actividades</a></h4>
                     <strong>Gestión de actividades</strong>
                     <p class="text-muted">
                         Administra las actividades programadas para los asociados, incluyendo registro de asistencia y
@@ -114,7 +120,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-envelope-plus icono-principal"></i>
-                    <h4 class="text-primary">Reportes</h4>
+                    <h4><a href="registroReportes.html" class="stretched-link text-primary text-decoration-none">Reportes</a></h4>
                     <strong>Gestión de reportes</strong>
                     <p class="text-muted">
                         Administra los reportes generados para los asociados, incluyendo información financiera y de
@@ -127,7 +133,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-file-person icono-principal"></i>
-                    <h4 class="text-primary">Mi Perfil</h4>
+                    <h4><a href="registroPerfil.html" class="stretched-link text-primary text-decoration-none">Mi Perfil</a></h4>
                     <strong>Gestión de mi perfil</strong>
                     <p class="text-muted">
                         Administra los datos de tu perfil como asociado.
@@ -138,7 +144,7 @@
             <div class="col-md-3">
                 <div class="card modulo-card shadow-sm p-3">
                     <i class="bi bi-cash-coin icono-principal"></i>
-                    <h4 class="text-primary">Mis Pagos</h4>
+                    <h4><a href="registroPago.html" class="stretched-link text-primary text-decoration-none">Mis Pagos</a></h4>
                     <strong>Gestión de pagos</strong>
                     <p class="text-muted">
                         Administra los pagos de las cuotas programadas, incluyendo adelantar pagos
