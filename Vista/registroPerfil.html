@@ -17,7 +17,7 @@
     </div>
 
     <div class="container py-4">
-        <form id="formPerfil" action="" method="post">
+        <form id="formPerfil" action="../Modelo/guardarPerfil.php" method="post">
             <fieldset>
                 <legend><i class="bi bi-file-person"></i> Mi perfil - Acerias</legend>
 
@@ -25,21 +25,24 @@
                     <div class="col-md-6">
                         <div class="grupo-input">
                             <label for="documento">Ingresar el Documento:</label>
-                            <input type="number" id="documento" name="documento" required placeholder="ejemplo: 1119150888">
+                            <input type="number" id="documento" name="documento" required
+                                placeholder="ejemplo: 1119150888">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="grupo-input">
-                            <label for="nombre">Ingresar el Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" required placeholder="ejemplo: Camila Andrea">
+                            <label for="nombres">Ingresar el Nombre:</label>
+                            <input type="text" id="nombres" name="nombres" required
+                                placeholder="ejemplo: Camila Andrea">
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="grupo-input">
-                            <label for="apellido">Ingresar el Apellido:</label>
-                            <input type="text" id="apellido" name="apellido" required placeholder="ejemplo: Angarita Soto">
+                            <label for="apellidos">Ingresar el Apellido:</label>
+                            <input type="text" id="apellidos" name="apellidos" required
+                                placeholder="ejemplo: Angarita Soto">
                         </div>
                     </div>
 
@@ -73,7 +76,8 @@
                     <div class="col-md-6">
                         <div class="grupo-input">
                             <label for="direccionResidencia">Ingresar la Dirección:</label>
-                            <input type="text" id="direccionResidencia" name="direccionResidencia" required placeholder="ejemplo: cra 13 #3-21">
+                            <input type="text" id="direccionResidencia" name="direccionResidencia" required
+                                placeholder="ejemplo: cra 13 #3-21">
                         </div>
                     </div>
 
@@ -101,7 +105,8 @@
                     <div class="col-md-6">
                         <div class="grupo-input">
                             <label for="email">Ingresar el Email:</label>
-                            <input type="email" id="email" name="email" required placeholder="ejemplo: nombre@correo.com">
+                            <input type="email" id="email" name="email" required
+                                placeholder="ejemplo: nombre@correo.com">
                         </div>
                     </div>
                 </div>
@@ -110,9 +115,11 @@
                     <button type="submit">Guardar</button>
                     <button type="reset">Limpiar</button>
                 </div>
+                <p id="mensajeRegistro" role="status" aria-live="polite"></p>
             </fieldset>
         </form>
     </div>
+    <script src="../Controlador/Asociado.js"></script>
 </body>
 
 </html>
