@@ -22,4 +22,16 @@ formulario.addEventListener("submit", async function (event) {
     } finally {
         BnGuardar.disabled = false; //habilitar el boton después de procesar la solicitud
     }
+
+
+
+    const asociado = object.fromEntries(new FormData(formulario).entries());
+    if(asociado.password !== asociado.confirmPassword){
+        document.getElementById("mensajeRegistro").textContent = "Las contraseñas no coinciden.";
+        document.getElementById("mensajeRegistro").dataset.tipo = 'error';
+        return;
+    }
+    delete asociado.confirmPassword;
+    
+
 });

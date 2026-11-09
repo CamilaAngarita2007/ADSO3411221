@@ -16,7 +16,7 @@ try {
         throw new Exception("Datos inválidos", 400);
     }
 
-    $campos = ['documento', 'nombres', 'apellidos', 'fechaNacimiento', 'genero', 'direccionResidencia', 'ciudad', 'telefono', 'email'];
+    $campos = ['documento', 'nombres', 'apellidos', 'fechaNacimiento', 'genero', 'direccionResidencia', 'ciudad', 'telefono', 'email', 'passwordHash'];
     foreach ($campos as $campo) {
         if (!isset($datos[$campo]) || empty($datos[$campo])) {
             http_response_code(400);
