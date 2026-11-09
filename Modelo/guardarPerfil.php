@@ -47,5 +47,4 @@ try {
 } catch (Exception $e) {
     http_response_code($e->getCode());
     echo json_encode(["success"=> false,"message"=> $e->getMessage()]);
-
 }
