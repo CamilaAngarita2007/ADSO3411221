@@ -28,3 +28,4 @@ formulario.addEventListener("submit", async function (event) {
      } finally {
         boton.disabled= false;
      }
+});
