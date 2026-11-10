@@ -2,7 +2,7 @@
 
 session_start();
 header("Content-Type: application/json; charset=utf-8");
-try{
+try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         http_response_code(405);
         //Saltar a catch y mostrar el mensaje
@@ -17,8 +17,8 @@ try{
     }
     // ??'' -> si no nada viene vacio
     $email = $datos['email'] ?? '';
-    $passwordHash = $datos['passwordHash'] ??'';
-    if(!is_string($email) || !is_string($passwordHash)||$email === '' || $passwordHash === ''){
+    $passwordHash = $datos['passwordHash'] ?? '';
+    if (!is_string($email) || !is_string($passwordHash) || $email === '' || $passwordHash === '') {
         http_response_code(400);
         throw new Exception("Email o contraseña invalidos", 400);
     }
@@ -29,7 +29,7 @@ try{
     $consulta = $conexion->prepare("SELECT * FROM asociados WHERE email = :email");
     $consulta->execute([':email' => $email]);
     $asociado = $consulta->fetch(PDO::FETCH_ASSOC);
-    
+
     if (!$asociado || !password_verify($passwordHash, $asociado['passwordHash'] || empty($asociado['passwordHash']))) {
         http_response_code(401);
         throw new Exception("Email o contraseña inválidas", 401);
@@ -38,7 +38,7 @@ try{
     //almacenar información del usuario en la sesión
     $_SESSION["rol"] = strtolower($asociado['rol']);
     $_SESSION["documento"] = $asociado['documento'];
-    
+
     echo json_encode([
         "success" => true,
         "rol" => $_SESSION['rol'],
@@ -47,13 +47,13 @@ try{
     ]);
 
 
-}catch (PDOException){
+} catch (PDOException) {
     $errorMessage = "Error: " . $e->getMessage();
     echo json_encode([
         "success" => false,
         "mensaje" => $errorMessage
     ]);
-} catch(Exception $e){
+} catch (Exception $e) {
     echo json_encode([
         "success" => false,
         "mensaje" => $e->getMessage()
