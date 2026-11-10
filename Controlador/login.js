@@ -17,24 +17,14 @@ formulario.addEventListener("submit", async function (event) {
             boton.disabled= false;
             return;
         }
-
-    } catch { }
-
-
-
-
-    const emailInput = document.getElementById("email").value;
-    const passwordInput = document.getElementById("password").value;
-
-    const usuarioencontrado = usuarios.find(
-        u => u.email === emailInput && u.password === passwordInput);
-
-    if (usuarioencontrado) {
         localStorage.setItem('logueado', 'true');
-        localStorage.setItem('rol', usuarioencontrado.rol);
-        localStorage.setItem('nombre', usuarioencontrado.nombre);
+        localStorage.setItem('rol', resultado.rol);
+        localStorage.setItem('nombre', resultado.nombre);
+
         window.location.href = "dashboard.html";
-    } else {
-        alert("Usuario o contraseña incorrectas");
-    }
-});
+
+    } catch (error){
+        mensaje.textContent = "Error al iniciar sesión. Por favor, inténtelo de nuevo.";
+     } finally {
+        boton.disabled= false;
+     }
