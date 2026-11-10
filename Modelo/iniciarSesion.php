@@ -1,61 +1,39 @@
 <?php
-
 session_start();
-header("Content-Type: application/json; charset=utf-8");
+header("content-type: application/json; charset=UTF-8");
+require_once __DIR__ . '/../Config/conexion.php';
+
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        http_response_code(405);
-        //Saltar a catch y mostrar el mensaje
         throw new Exception("Metodo HTTP no permitido", 405);
     }
-    //Decodificar el JSON en un array asociativo
-    $datos = json_decode($json, true);
-    //error de decodificación
-    if (!is_array($datos) || json_last_error() !== JSON_ERROR_NONE) {
-        http_response_code(400);
-        throw new Exception("Datos inválidos", 400);
-    }
-    // ??'' -> si no nada viene vacio
-    $email = $datos['email'] ?? '';
-    $passwordHash = $datos['passwordHash'] ?? '';
-    if (!is_string($email) || !is_string($passwordHash) || $email === '' || $passwordHash === '') {
-        http_response_code(400);
-        throw new Exception("Email o contraseña invalidos", 400);
+    $datos = json_decode(file_get_contents('php://input'), true);
+    if (!is_array($datos) || empty($datos['email']) || empty($datos['password'])) {
+        throw new Exception("Correo y contraseña son obligatorios", 400);
     }
 
-    require_once __DIR__ . '/../Config/conexion.php';
-    $conexion = (new Conexion())->conectar();
+    $db = (new conexion())->conectar();
+    $consulta = $db->prepare("SELECT documento, nombres, apellidos, passwordHash, rol FROM asociados WHERE email = :email LIMIT 1");
+    $consulta->execute([':email' => $datos['email']]);
+    $usuario = $consulta->fetch();
 
-    $consulta = $conexion->prepare("SELECT * FROM asociados WHERE email = :email");
-    $consulta->execute([':email' => $email]);
-    $asociado = $consulta->fetch(PDO::FETCH_ASSOC);
-
-    if (!$asociado || !password_verify($passwordHash, $asociado['passwordHash'] || empty($asociado['passwordHash']))) {
-        http_response_code(401);
-        throw new Exception("Email o contraseña inválidas", 401);
+    if (!$usuario || !password_verify($datos['password'], $usuario['passwordHash'])) {
+        throw new Exception("Usuario o contraseña incorrectas", 401);
     }
 
-    //almacenar información del usuario en la sesión
-    $_SESSION["rol"] = strtolower($asociado['rol']);
-    $_SESSION["documento"] = $asociado['documento'];
+    $_SESSION["rol"] = strtolower($usuario['rol']);
+    $_SESSION["documento"] = $usuario['documento'];
 
     echo json_encode([
         "success" => true,
-        "rol" => $_SESSION['rol'],
-        "documento" => $_SESSION['documento'],
-        "nombre" => $asociado['nombres'] . " " . $asociado['apellidos'],
+        "nombre" => $usuario['nombres'] . " " . $usuario['apellidos'],
+        "rol" => $_SESSION["rol"],
+        "documento" => $usuario['documento']
     ]);
-
-
 } catch (PDOException $e) {
-    $errorMessage = "Error: " . $e->getMessage();
-    echo json_encode([
-        "success" => false,
-        "mensaje" => $errorMessage
-    ]);
+    http_response_code(500);
+    echo json_encode(["success" => false, "message" => "Error de base de datos: " . $e->getMessage()]);
 } catch (Exception $e) {
-    echo json_encode([
-        "success" => false,
-        "mensaje" => $e->getMessage()
-    ]);
+    http_response_code($e->getCode() ?: 500);
+    echo json_encode(["success" => false, "message" => $e->getMessage()]);
 }
