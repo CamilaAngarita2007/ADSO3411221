@@ -27,7 +27,7 @@ class perfil
         $this->ciudad = $datos['ciudad'];
         $this->telefono = $datos['telefono'];
         $this->email = $datos['email'];
-        $this->passwordHash = password_hash($datos['password'], PASSWORD_DEFAULT);
+        $this->passwordHash = password_hash($datos['passwordHash'], PASSWORD_DEFAULT);
         
         $cinexionDB = new conexion();
         $this->conexion = $cinexionDB->conectar();
@@ -47,7 +47,7 @@ class perfil
             ':ciudad' => $this->ciudad,
             ':telefono' => $this->telefono,
             ':email' => $this->email,
-            ':password' => $this->passwordHash
+            ':passwordHash' => $this->passwordHash
         ]);
     }
 }
