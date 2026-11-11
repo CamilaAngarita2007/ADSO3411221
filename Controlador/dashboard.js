@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logueado = localStorage.getItem("logueado");
 
     if (!logueado) {
-        window.location.href = "login.html";
+        window.location.href = "../Vista/login.html";
         return;
     }
     const nombre = localStorage.getItem("nombre");
@@ -17,9 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("tarjetasAdministrador").classList.add("d-none");
     }
 
-    const cerrarSesionBtn = document.getElementById("cerrarSesion");
-    cerrarSesionBtn.addEventListener("click", () => {
-        localStorage.clear();
-        window.location.href = "login.html";
-    });
+    async function cerrarSesion() {
+        try{
+            const respuesta = await fetch("../Modelo/cerrarsesion.php", {
+                method: "POST"
+            });
+
+            if (!respuesta.ok) {
+                throw new Error("Error al cerrar sesión");
+            }
+            localStorage.clear();
+            window.location.href = "../Vista/login.html";
+        }catch(error){
+            console.error("Error al cerrar sesión:", error);
+        }
 });
