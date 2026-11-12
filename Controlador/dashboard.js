@@ -31,4 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }catch(error){
             console.error("Error al cerrar sesión:", error);
         }
+    }
+
+    document.getElementById("cerrarSesion").addEventListener("click", cerrarSesion);
 });
