@@ -1,0 +1,415 @@
+/* Estilos CRUD (listados, tablas, filtros, modales) - Club Acerías
+   Replica la identidad visual de registro.css */
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body,
+.registration-body {
+    background-color: rgb(255, 236, 253);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Navbar ---------- */
+.club-navbar {
+    background-color: #770065;
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.club-navbar .navbar-brand {
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.club-navbar .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 6px 14px;
+    margin-left: 4px;
+}
+
+.club-navbar .nav-link:hover,
+.club-navbar .nav-link:focus {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.club-navbar .nav-link.active {
+    background-color: deeppink;
+    border: 2px solid black;
+    color: #ffffff;
+}
+
+/* ---------- Contenido ---------- */
+.page-content {
+    flex: 1;
+    padding-top: 32px;
+    padding-bottom: 40px;
+}
+
+.page-heading {
+    margin-bottom: 24px;
+}
+
+.back-link {
+    color: #770065;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: deeppink;
+    text-decoration: underline;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 3px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: deeppink;
+    color: #ffffff;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.page-heading h1 {
+    color: #770065;
+}
+
+/* ---------- Tarjetas de resumen ---------- */
+.page-content .row > [class*="col-"] > .card {
+    background-color: aquamarine;
+    border: 2px solid black !important;
+    border-radius: 15px;
+    box-shadow: none !important;
+    transition: transform 0.2s ease;
+}
+
+.page-content .row > [class*="col-"] > .card:hover {
+    transform: translateY(-4px);
+}
+
+.page-content .row > [class*="col-"] > .card .text-secondary {
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+.module-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    color: #ffffff;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.icon-blue {
+    background-color: rgb(20, 63, 255);
+}
+
+.icon-green {
+    background-color: #00a86b;
+}
+
+.icon-orange {
+    background-color: #ff8c00;
+}
+
+.icon-pink {
+    background-color: deeppink;
+}
+
+/* ---------- Tarjeta principal (borde animado) ---------- */
+.form-card {
+    border: 4px solid transparent;
+    border-radius: 40px;
+    background-image:
+        linear-gradient(blanchedalmond, blanchedalmond),
+        linear-gradient(-45deg, #ff00c8, #00a2ff, #fbff00);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 400% 400%;
+    animation: unificadaAnimation 3s ease infinite;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: deeppink;
+    border-color: black;
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #d6007a;
+    border-color: black;
+    color: #ffffff;
+}
+
+.btn-outline-primary {
+    background-color: #ffffff;
+    border-color: black;
+    color: #770065;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgb(20, 63, 255);
+    border-color: black;
+    color: #ffffff;
+}
+
+.btn-check:checked + .btn-outline-primary,
+.btn-check:active + .btn-outline-primary,
+.btn-outline-primary.active {
+    background-color: deeppink;
+    border-color: black;
+    color: #ffffff;
+}
+
+.btn-check:focus-visible + .btn-outline-primary {
+    box-shadow: 0 0 0 3px rgb(31, 41, 51);
+}
+
+.btn-outline-secondary {
+    background-color: rgb(20, 63, 255);
+    border-color: black;
+    color: #ffffff;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #0e2fc4;
+    border-color: black;
+    color: #ffffff;
+}
+
+/* ---------- Filtros / inputs ---------- */
+.input-group-text {
+    background-color: aquamarine;
+    border: 2px solid black;
+    border-radius: 5px 0 0 5px;
+    color: #000000;
+}
+
+.form-control,
+.form-select {
+    background-color: #ffffff;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.input-group > .form-control {
+    border-radius: 0 5px 5px 0;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: aqua;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(31, 41, 51);
+}
+
+/* ---------- Tabla ---------- */
+.table-responsive {
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead.table-light th,
+.table > thead th {
+    background-color: #770065;
+    color: #ffffff;
+    border-bottom: 2px solid black;
+    padding: 12px;
+    white-space: nowrap;
+}
+
+.table > tbody td {
+    padding: 12px;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: rgb(255, 224, 250);
+    --bs-table-bg-state: rgb(255, 224, 250);
+}
+
+/* Botones de acción dentro de la tabla */
+.table .btn {
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+.table .btn-outline-primary,
+.table .btn-outline-secondary {
+    background-color: aquamarine;
+    color: #000000;
+}
+
+.table .btn-outline-danger {
+    background-color: #ffffff;
+    color: #dc3545;
+    border-color: black;
+}
+
+.table .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+/* ---------- Insignias de estado ---------- */
+.badge,
+.badge-estado {
+    padding: 6px 12px;
+    font-size: 13px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.badge.bg-success,
+.badge-proxima {
+    background-color: aquamarine !important;
+    color: #000000;
+}
+
+.badge.bg-secondary,
+.badge-realizada {
+    background-color: #ffffff !important;
+    color: #770065;
+}
+
+.badge.bg-warning,
+.badge-cancelada {
+    background-color: #fbff00 !important;
+    color: #000000;
+}
+
+/* ---------- Alertas / estados vacíos ---------- */
+.alert {
+    border: 2px solid black;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+#sinActividades i,
+#cargandoActividades .spinner-border {
+    color: deeppink !important;
+}
+
+/* ---------- Modal ---------- */
+.modal-content {
+    border: 4px solid transparent;
+    border-radius: 30px;
+    background-image:
+        linear-gradient(blanchedalmond, blanchedalmond),
+        linear-gradient(-45deg, #ff00c8, #00a2ff, #fbff00);
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 400% 400%;
+    animation: unificadaAnimation 3s ease infinite;
+}
+
+.modal-header {
+    margin: 16px 16px 0;
+    padding: 8px 15px;
+    background-color: deeppink;
+    color: #ffffff;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-body .list-group-item {
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.modal-body .text-primary,
+.page-content .text-primary {
+    color: #9e057d !important;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    background-color: #770065;
+    margin-top: auto;
+}
+
+.site-footer .text-secondary {
+    color: #ffffff !important;
+}
+
+/* ---------- Animación ---------- */
+@keyframes unificadaAnimation {
+    0% {
+        background-position: 0% 50%, 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%, 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%, 0% 50%;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 575px) {
+    .form-card {
+        border-radius: 25px;
+    }
+
+    .form-card .card-body {
+        padding: 16px !important;
+    }
+
+    .modal-content {
+        border-radius: 20px;
+    }
+
+    .btn-group {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-card,
+    .modal-content {
+        animation: none;
+    }
+
+    .page-content .row > [class*="col-"] > .card {
+        transition: none;
+    }
+}
