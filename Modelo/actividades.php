@@ -43,20 +43,21 @@ class Actividades
     {
         $sql = "UPDATE actividades SET nombreActividad = :nombreActividad, fechaEvento = :fechaEvento, municipio = :municipio, totalRecaudado = :totalRecaudado WHERE idActividad = :idActividad";
         $consulta = $this->conexion->prepare($sql);
-        return $consulta->execute([
+        $consulta->execute([
             ':nombreActividad' => $datos['nombreActividad'],
             ':fechaEvento' => $datos['fechaEvento'],
             ':municipio' => $datos['municipio'],
             ':totalRecaudado' => $datos['totalRecaudado'],
-            ':idActividad' => $datos['idActividad']
+            ':idActividad' => $idActividad
         ]);
         if ($consulta->rowCount() > 0) {
             return true; // Actualización exitosa
-        } 
-        
-        $verificar =this->conexion->prepare("SELECT 1 FROM actividades WHERE idActividad = :idActividad");
-        $verificar->execute([':idActividad' => $datos['idActividad']]);
-       
-        return(bool)$verificar->fetchColumn(); // Devuelve true si el registro existe, false si no existe
+        }
+
+        // Si no cambió ninguna fila, verificar si el registro existe
+        $verificar = $this->conexion->prepare("SELECT 1 FROM actividades WHERE idActividad = :idActividad");
+        $verificar->execute([':idActividad' => $idActividad]);
+
+        return (bool)$verificar->fetchColumn(); // true si existe, false si no
     }
 }

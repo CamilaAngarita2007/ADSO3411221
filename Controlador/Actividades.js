@@ -2,24 +2,24 @@ const listaActividades = document.getElementById("listaActividades");
 let esAdministrador = false;
 let actividades = [];
 
-async function solicitarApi(metodo, datos,) {
+async function solicitarApi(metodo, datos) {
     const opciones = {
         method: metodo,
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(datos)
+        }
     };
     if (datos) {
         opciones.body = JSON.stringify(datos);
     }
-    const respuesta = await fetch("../modelo/gestionarActividades.php", opciones);
+    const respuesta = await fetch("../Modelo/gestionarActividades.php", opciones);
     const resultado = await respuesta.json();
 
-    if (resultado.status === "401") {
-        window.location.href = "../vista/login.html";
+    if (respuesta.status === 401) {
+        window.location.href = "../Vista/login.html";
+        throw new Error("Sesión no iniciada");
     }
-    if (!resultado.ok || resultado.success) {
+    if (!resultado.success) {
         throw new Error(resultado.message || "Error en la solicitud");
     }
     return resultado;
@@ -29,15 +29,17 @@ async function cargarActividades() {
     try {
         const resultado = await solicitarApi("GET");
         esAdministrador = resultado.rol === "admin";
-        //configurarAcciones();
+        document.getElementById("thAcciones").classList.toggle("d-none", !esAdministrador);
 
         actividades = resultado.actividades;
         mostrarActividades();
+        document.getElementById("contenedorTabla").classList.remove("d-none");
     } catch (error) {
         alert("Error al cargar las actividades: " + error.message);
+    } finally {
+        document.getElementById("cargandoActividades").classList.add("d-none");
     }
 }
-
 
 function mostrarActividades() {
     listaActividades.replaceChildren();
@@ -57,18 +59,11 @@ function mostrarActividades() {
             crearCelda(actividad.nombreActividad),
             crearCelda(actividad.fechaEvento),
             crearCelda(actividad.municipio),
-            crearCelda(actividad.totalRecaudado === null ? "pendiente" : Number(actividad.totalRecaudado).toLocaleString("es-co", { style: "currency", currency: "cop" })),
-
+            crearCelda(actividad.totalRecaudado === null ? "pendiente" : Number(actividad.totalRecaudado).toLocaleString("es-CO", { style: "currency", currency: "COP" }))
         );
         if (esAdministrador) {
             const acciones = document.createElement("td");
-            acciones.className = "text-nowrap";
-
-            const botonEditar = document.createElement("button");
-            botonEditar.type = "button";
-            botonEditar.className = "btn btn-sm btn-outline-primary me-2";
-            botonEditar.innerHTML = `<i class="bi bi-pencil-square"></i>`;
-            botonEditar.addEventListener("click", () => abrirEdicion(actividad));
+            acciones.className = "text-end text-nowrap";
 
             const botonEliminar = document.createElement("button");
             botonEliminar.type = "button";
@@ -76,9 +71,8 @@ function mostrarActividades() {
             botonEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
             botonEliminar.addEventListener("click", () => eliminarActividad(actividad.idActividad));
 
-            acciones.append(botonEditar, botonEliminar);
+            acciones.append(botonEliminar);
             fila.append(acciones);
-
         }
         listaActividades.append(fila);
     });
@@ -88,6 +82,18 @@ function crearCelda(texto) {
     const celda = document.createElement("td");
     celda.textContent = texto;
     return celda;
+}
+
+async function eliminarActividad(idActividad) {
+    if (!confirm("¿Seguro que deseas eliminar esta actividad?")) {
+        return;
+    }
+    try {
+        await solicitarApi("DELETE", { idActividad: idActividad });
+        await cargarActividades();
+    } catch (error) {
+        alert("Error al eliminar la actividad: " + error.message);
+    }
 }
 
 cargarActividades();
