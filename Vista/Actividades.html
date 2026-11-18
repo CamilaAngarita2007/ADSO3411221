@@ -57,6 +57,41 @@
     </section>
   </main>
 
+  <!-- Modal de edición -->
+  <div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="tituloModalEdicion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="formEdicion">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="tituloModalEdicion">Editar actividad</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="idActividad">
+          <div class="mb-3">
+            <label for="editNombreActividad" class="form-label">Actividad</label>
+            <input id="editNombreActividad" type="text" class="form-control" name="nombreActividad" maxlength="100" required>
+          </div>
+          <div class="mb-3">
+            <label for="editFechaEvento" class="form-label">Fecha</label>
+            <input id="editFechaEvento" type="date" class="form-control" name="fechaEvento" required>
+          </div>
+          <div class="mb-3">
+            <label for="editMunicipio" class="form-label">Municipio</label>
+            <input id="editMunicipio" type="text" class="form-control" name="municipio" maxlength="50" required>
+          </div>
+          <div class="mb-3">
+            <label for="editTotalRecaudado" class="form-label">Total recaudado</label>
+            <input id="editTotalRecaudado" type="number" class="form-control" name="totalRecaudado" min="0" step="any" placeholder="Pendiente">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="site-footer"><div class="container py-4 text-center text-secondary small">Club Acerías · Sistema de gestión</div></footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../Controlador/sesion.js"></script>

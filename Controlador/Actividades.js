@@ -65,13 +65,19 @@ function mostrarActividades() {
             const acciones = document.createElement("td");
             acciones.className = "text-end text-nowrap";
 
+            const botonEditar = document.createElement("button");
+            botonEditar.type = "button";
+            botonEditar.className = "btn btn-sm btn-outline-primary me-2";
+            botonEditar.innerHTML = `<i class="bi bi-pencil-square"></i>`;
+            botonEditar.addEventListener("click", () => abrirEdicion(actividad));
+
             const botonEliminar = document.createElement("button");
             botonEliminar.type = "button";
             botonEliminar.className = "btn btn-sm btn-outline-danger";
             botonEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
             botonEliminar.addEventListener("click", () => eliminarActividad(actividad.idActividad));
 
-            acciones.append(botonEliminar);
+            acciones.append(botonEditar, botonEliminar);
             fila.append(acciones);
         }
         listaActividades.append(fila);
@@ -95,5 +101,34 @@ async function eliminarActividad(idActividad) {
         alert("Error al eliminar la actividad: " + error.message);
     }
 }
+
+function abrirEdicion(actividad) {
+    const formulario = document.getElementById("formEdicion");
+    formulario.idActividad.value = actividad.idActividad;
+    formulario.nombreActividad.value = actividad.nombreActividad;
+    formulario.fechaEvento.value = (actividad.fechaEvento ?? "").substring(0, 10);
+    formulario.municipio.value = actividad.municipio;
+    formulario.totalRecaudado.value = actividad.totalRecaudado ?? "";
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("modalEdicion")).show();
+}
+
+document.getElementById("formEdicion").addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+    const formulario = evento.target;
+    const datos = {
+        idActividad: Number(formulario.idActividad.value),
+        nombreActividad: formulario.nombreActividad.value.trim(),
+        fechaEvento: formulario.fechaEvento.value,
+        municipio: formulario.municipio.value.trim(),
+        totalRecaudado: formulario.totalRecaudado.value === "" ? null : Number(formulario.totalRecaudado.value)
+    };
+    try {
+        await solicitarApi("PUT", datos);
+        bootstrap.Modal.getInstance(document.getElementById("modalEdicion")).hide();
+        await cargarActividades();
+    } catch (error) {
+        alert("Error al actualizar la actividad: " + error.message);
+    }
+});
 
 cargarActividades();
