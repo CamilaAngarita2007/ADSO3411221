@@ -1,54 +1,62 @@
 <?php
 
-class Actividad {
+require_once __DIR__ . '/../Config/conexion.php';
 
+class Actividades
+{
     private $conexion;
 
-    public function __construct($conexion) {
-        $conexionDB = new conexion();
-        $this->conexion = $conexionDB->conectar();
+    public function __construct()
+    {
+        $conexiondb = new Conexion();
+        $this->conexion = $conexiondb->conectar();
     }
-    public function obtenerActividad() {
-        $sql = "SELECT * FROM actividades order by fechaevento asc";
+
+    public function obtenerActividades()
+    {
+        $sql = "SELECT * FROM actividades ORDER BY fechaEvento ASC";
         $consulta = $this->conexion->prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
     }
 
-    public function guardar(){
-        $sql ="INSERT INTO actividades (nombreActividad, fechaEvento, municipio) VALUES (:nombreActividad, :fechaEvento, :municipio)";
+    public function guardar($datos)
+    {
+        $sql = "INSERT INTO actividades (nombreActividad, fechaEvento, municipio)
+                VALUES (:nombreActividad, :fechaEvento, :municipio)";
         $consulta = $this->conexion->prepare($sql);
         return $consulta->execute([
-            ":nombreActividad" => $_POST['nombreActividad'],
-            ":fechaEvento" => $_POST['fechaEvento'],   
-            ":municipio" => $_POST['municipio'] 
+            ':nombreActividad' => $datos['nombreActividad'],
+            ':fechaEvento' => $datos['fechaEvento'],
+            ':municipio' => $datos['municipio']
         ]);
     }
 
-    public function eliminar($idActividad) {
+    public function eliminar($idActividad)
+    {
         $sql = "DELETE FROM actividades WHERE idActividad = :idActividad";
         $consulta = $this->conexion->prepare($sql);
         $consulta->execute([':idActividad' => $idActividad]);
-        return $consulta->rowCount() > 0; // Devuelve true si se eliminó al menos una fila, false en caso contrario
+        return $consulta->rowCount() > 0;
     }
-    public function editar($datos){
-        $sql="UPDATE actividades SET nombreActividad = :nombreActividad, fechaEvento = :fechaEvento, municipio = :municipio, totalRecaudo = :totalRecaudo WHERE idActividad = :idActividad";
+    public function editar($idActividad, $datos)
+    {
+        $sql = "UPDATE actividades SET nombreActividad = :nombreActividad, fechaEvento = :fechaEvento, municipio = :municipio, totalRecaudado = :totalRecaudado WHERE idActividad = :idActividad";
         $consulta = $this->conexion->prepare($sql);
         return $consulta->execute([
-            ":nombreActividad" => $datos['nombreActividad'],
-            ":fechaEvento" => $datos['fechaEvento'],
-            ":municipio" => $datos['municipio'],
-            ":totalRecaudo" => $datos['totalRecaudo'],
-            ":idActividad" => $datos['idActividad']
+            ':nombreActividad' => $datos['nombreActividad'],
+            ':fechaEvento' => $datos['fechaEvento'],
+            ':municipio' => $datos['municipio'],
+            ':totalRecaudado' => $datos['totalRecaudado'],
+            ':idActividad' => $datos['idActividad']
         ]);
-
-        if($consulta->rowCount() > 0){
-            return true; // Se actualizó al menos una fila
-        }
-
-        $verificar = $this->conexion->prepare("SELECT 1 FROM actividades WHERE idActividad = :idActividad");
-        $verificar->execute([':idActividad' => $datos['idActividad']]);
-        return(bool)$verificar->fetchColumn(); // Devuelve true si el registro existe, false en caso contrario
+        if ($consulta->rowCount() > 0) {
+            return true; // Actualización exitosa
+        } 
         
+        $verificar =this->conexion->prepare("SELECT 1 FROM actividades WHERE idActividad = :idActividad");
+        $verificar->execute([':idActividad' => $datos['idActividad']]);
+       
+        return(bool)$verificar->fetchColumn(); // Devuelve true si el registro existe, false si no existe
     }
 }
